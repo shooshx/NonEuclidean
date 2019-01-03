@@ -1,4 +1,5 @@
 #pragma once
+#ifdef WIN32
 #include <Windows.h>
 
 class Timer {
@@ -35,3 +36,34 @@ private:
   LARGE_INTEGER frequency;        // ticks per second
   LARGE_INTEGER t1, t2;           // ticks
 };
+#else
+
+
+class Timer {
+public:
+    Timer() {
+    }
+
+    void Start() {
+    }
+
+    float Stop() {
+        return 0;
+    }
+
+    int64_t GetTicks() {
+        return 0;
+    }
+
+    int64_t SecondsToTicks(float s) {
+        return 0;
+    }
+
+    float StopStart() {
+        return 0;
+    }
+
+private:
+};
+
+#endif

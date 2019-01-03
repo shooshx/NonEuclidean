@@ -1,6 +1,8 @@
 #pragma once
 #include "Vector.h"
 
+using namespace std;
+
 class Camera {
 public:
   Camera();

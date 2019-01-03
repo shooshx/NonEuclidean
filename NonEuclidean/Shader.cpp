@@ -1,6 +1,7 @@
 #include "Shader.h"
 #include <fstream>
 #include <sstream>
+#include <iostream>
 
 Shader::Shader(const char* name) {
   //Get the file paths
@@ -62,6 +63,10 @@ void Shader::Use() {
 GLuint Shader::LoadShader(const char* fname, GLenum type) {
   //Read shader source from disk
   std::ifstream fin(fname);
+  if (!fin) {
+      std::cout << "could not open file " << fname << std::endl;
+      return 0;
+  }
   std::stringstream buff;
   buff << fin.rdbuf();
   const std::string str = buff.str();
@@ -82,9 +87,10 @@ GLuint Shader::LoadShader(const char* fname, GLenum type) {
     std::vector<GLchar> log;
     log.resize(logLength);
     glGetShaderInfoLog(id, logLength, &logLength, log.data());
-
     std::ofstream fout(std::string(fname) + ".log");
     fout.write(log.data(), logLength);
+    std::cout << "-- errors in " << fname << std::endl;
+    std::cout.write(log.data(), logLength);
     return 0;
   }
 
@@ -107,7 +113,7 @@ GLuint Shader::LoadShader(const char* fname, GLenum type) {
   return id;
 }
 
-void Shader::SetMVP(const float* mvp, const float* mv) {
-  if (mvp) glUniformMatrix4fv(mvpId, 1, GL_TRUE, mvp);
-  if (mv) glUniformMatrix4fv(mvId, 1, GL_TRUE, mv);
+void Shader::SetMVP(const Matrix4& mvp, const Matrix4& mv) {
+  glUniformMatrix4fv(mvpId, 1, GL_FALSE, mvp.Transposed().m);
+  glUniformMatrix4fv(mvId, 1, GL_FALSE, mv.Transposed().m);
 }

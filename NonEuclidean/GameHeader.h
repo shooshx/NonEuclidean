@@ -14,7 +14,7 @@ static const int GH_MAX_PORTALS = 16;
 //Graphics
 static const bool GH_START_FULLSCREEN = false;
 static const bool GH_HIDE_MOUSE = true;
-static const bool GH_USE_SKY = true;
+static const bool GH_USE_SKY = false;
 static const int GH_SCREEN_WIDTH = 1280;
 static const int GH_SCREEN_HEIGHT = 720;
 static const int GH_SCREEN_X = 50;
@@ -47,7 +47,7 @@ class Input;
 class Player;
 extern Engine* GH_ENGINE;
 extern Player* GH_PLAYER;
-extern const Input* GH_INPUT;
+extern Input* GH_INPUT;
 extern int GH_REC_LEVEL;
 extern int64_t GH_FRAME;
 

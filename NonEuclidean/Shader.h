@@ -1,6 +1,7 @@
 #pragma once
 #include <GL/glew.h>
 #include <vector>
+#include "Vector.h"
 
 class Shader {
 public:
@@ -8,7 +9,7 @@ public:
   ~Shader();
 
   void Use();
-  void SetMVP(const float* mvp, const float* mv);
+  void SetMVP(const Matrix4& mvp, const Matrix4& mv);
 
 private:
   GLuint LoadShader(const char* fname, GLenum type);

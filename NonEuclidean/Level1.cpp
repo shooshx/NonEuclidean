@@ -32,7 +32,7 @@ void Level1::Load(PObjectVec& objs, PPortalVec& portals, Player& player) {
   std::shared_ptr<Portal> portal4(new Portal());
   tunnel2->SetDoor2(*portal4);
   portals.push_back(portal4);
-
+  
   Portal::Connect(portal1, portal2);
   Portal::Connect(portal3, portal4);
 

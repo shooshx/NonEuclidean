@@ -1,6 +1,7 @@
 #include "Texture.h"
 #include <fstream>
 #include <cassert>
+#include <iostream>
 
 Texture::Texture(const char* fname, int rows, int cols) {
   //Check if this is a 3D texture
@@ -8,9 +9,11 @@ Texture::Texture(const char* fname, int rows, int cols) {
   is3D = (rows > 1 || cols > 1);
 
   //Open the bitmap
-  std::ifstream fin(std::string("Textures/") + fname, std::ios::in | std::ios::binary);
+  std::string path = std::string("Textures/") + fname;
+  std::ifstream fin(path, std::ios::in | std::ios::binary);
   if (!fin) {
     texId = 0;
+    std::cout << "failed to load texture " << path.c_str() << std::endl;
     return;
   }
 
@@ -50,7 +53,9 @@ Texture::Texture(const char* fname, int rows, int cols) {
     glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_GENERATE_MIPMAP, GL_TRUE);
     glGenerateMipmap(GL_TEXTURE_2D);
+#ifdef WIN32 // SHY-TBD
     glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_RGB8, width/rows, height/cols, rows*cols, 0, GL_BGR, GL_UNSIGNED_BYTE, img);
+#endif
   } else {
     glBindTexture(GL_TEXTURE_2D, texId);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);

@@ -1,15 +1,15 @@
-#version 150
+//#version 150
 
 //Globals
 uniform mat4 mvp;
 uniform mat4 mv;
 
 //Inputs
-in vec3 in_pos;
-in vec2 in_uv;
+attribute vec3 in_pos;
+attribute vec2 in_uv;
 
 //Outputs
-out vec3 ex_normal;
+varying vec3 ex_normal;
 
 void main(void) {
 	gl_Position = vec4(in_pos.xy, 0.0, 1.0);

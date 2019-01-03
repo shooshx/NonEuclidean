@@ -4,11 +4,14 @@
 #include <sstream>
 #include <string>
 #include <cassert>
+#include <iostream>
 
 Mesh::Mesh(const char* fname) {
   //Open the file for reading
-  std::ifstream fin(std::string("Meshes/") + fname);
+  std::string path = std::string("Meshes/") + fname;
+  std::ifstream fin(path);
   if (!fin) {
+    cout << "failed opening file " << path << std::endl;
     return;
   }
 
@@ -159,7 +162,7 @@ Mesh::~Mesh() {
 
 void Mesh::Draw() {
   glBindVertexArray(vao);
-  glDrawArrays(GL_TRIANGLES, 0, (GLsizei)verts.size());
+  glDrawArrays(GL_TRIANGLES, 0, (GLsizei)verts.size()/3);
 }
 
 void Mesh::DebugDraw(const Camera& cam, const Matrix4& objMat) {

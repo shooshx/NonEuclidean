@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "Input.h"
 #include "GameHeader.h"
-#include <Windows.h>
+//#include <Windows.h>
 #include <iostream>
 
 Player::Player() {
@@ -22,6 +22,7 @@ void Player::Reset() {
 }
 
 void Player::Update() {
+    //std::cout << "Player-Update!" << std::endl;
   //Update bobbing motion
   float magT = (prev_pos - pos).Mag() / (GH_DT * p_scale);
   if (!onGround) { magT = 0.0f; }

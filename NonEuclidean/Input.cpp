@@ -1,6 +1,8 @@
 #include "Input.h"
 #include "GameHeader.h"
+#ifdef WIN32
 #include <Windows.h>
+#endif
 #include <memory>
 
 Input::Input() {
@@ -17,6 +19,7 @@ void Input::EndFrame() {
 }
 
 void Input::UpdateRaw(const tagRAWINPUT* raw) {
+#ifdef WIN32 // doesn't seem to do anything useful...
   static BYTE buffer[2048];
   static UINT buffer_size = sizeof(buffer);
 
@@ -43,4 +46,5 @@ void Input::UpdateRaw(const tagRAWINPUT* raw) {
   } else if (raw->header.dwType == RIM_TYPEHID) {
     //TODO:
   }
+#endif
 }

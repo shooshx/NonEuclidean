@@ -1,4 +1,4 @@
-#version 150
+//#version 150
 precision highp float;
 
 #define LIGHT vec3(0.36, 0.80, 0.48)
@@ -6,10 +6,10 @@ precision highp float;
 #define SUN_SHARPNESS 1.0
 
 //Inputs
-in vec3 ex_normal;
+varying vec3 ex_normal;
 
 //Outputs
-out vec4 gl_FragColor;
+//out vec4 gl_FragColor;
 
 void main(void) {
 	vec3 n = normalize(ex_normal);
