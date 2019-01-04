@@ -15,4 +15,4 @@ void main(void) {
 	gl_Position = vec4(in_pos.xy, 0.0, 1.0);
 	vec3 eye_normal = normalize((mvp * gl_Position).xyz);
 	ex_normal = normalize((mv * vec4(eye_normal, 0.0)).xyz);
-}
+} 

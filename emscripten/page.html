@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="non_euc.js"></script>
+
 
 <script type="text/javascript">
 "use strict";
@@ -27,7 +27,7 @@ function init_inputs()
     }
 }
 
-function start() {
+function startjs() {
     gl = mycanvas.getContext('webgl2')
     run_main = Module.cwrap('run_main', null, [])
     
@@ -38,7 +38,7 @@ function start() {
     Module.run_single_frame()
 }
 
-function startjs() {
+function start() {
 }
 
 function draw() {
@@ -48,6 +48,7 @@ function draw() {
 }
 
 </script>
+<script src="non_euc.js"></script>
 
 </head>
 <body onload="startjs()">
